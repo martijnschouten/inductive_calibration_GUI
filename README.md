@@ -2,12 +2,20 @@ This program can be used to calibration the x and y offset of a multi-material 3
 
 <img src="https://user-images.githubusercontent.com/6079002/137327595-4b70b5c3-cb55-4091-8608-67f0f5b063d4.jpg" width="300">
 
-
-
 The evaluation module should be placed on the bed and the printer and the module should be connected using usb cables to your computer. Then when running this program it will move each nozzle over the coil and determine the offset between the nozzles.
 
 # Typical usage
-
+1. Run the installer, which can be found here: https://github.com/martijnschouten/inductive_calibration_GUI/releases
+1. Place the LDC1101EVM on the bed
+1. Connect the printer and the LDC1101EVM to the computer on which you ran the installer
+1. Manually move the printer such that the first tool is just above the coil.
+1. Run the program and copy the current location of the printer in x-coordinate coil, y-coordinate coil z-height test. Note that this does not need to be very precise
+1. Check that scanning range (default 2mm), speed (default 0.5mm/s), nozzle temperature (default 175) and bed temepature (default 0) are set to appropriate values
+1. Select the tools that need to be calibrated and select the tool relative to which the offset will be shown
+1. Run Calibrate X. The printer will now start moving the nozzles over the coil
+1. Check that the found offsets make sense. And click on apply offsets.
+1. Run Calibrate Y. The printer will now start moving the nozzles over the coil
+1. Check that the found offsets make sense. And click on apply offsets.
 
 # Compilation instructions
 On windows:
