@@ -1,5 +1,6 @@
 This program can be used to calibration the x and y offset of a multi-material 3D printer using LDC1101EVM evaluation module, to which a coil is mounted.
-![inductive_setup - original](https://user-images.githubusercontent.com/6079002/137327595-4b70b5c3-cb55-4091-8608-67f0f5b063d4.jpg)
+
+<img src="https://user-images.githubusercontent.com/6079002/137327595-4b70b5c3-cb55-4091-8608-67f0f5b063d4.jpg" width="100">
 
 
 
