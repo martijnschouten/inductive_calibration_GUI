@@ -28,7 +28,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         #Load the UI Page
         uic.loadUi('interface.ui', self)
-        QtGui.QApplication.processEvents()
+        QtWidgets.QApplication.processEvents()
 
         self.sig_graph = self.sig_graph.getPlotItem()
         self.cal_x_button.clicked.connect(self.calibrate_x)
@@ -530,9 +530,9 @@ def main():
     pg.setConfigOption('background', 'w')
     pg.setConfigOption('foreground', 'k')
     pg.setConfigOption('useOpenGL',1)
-    pg.setConfigOption('useWeave',1)
+    #pg.setConfigOption('useWeave',1)
     
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     
     main = MainWindow()
     main.show()
