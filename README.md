@@ -2,7 +2,7 @@ This program can be used to calibration the x and y offset of a multi-material 3
 
 <img src="https://user-images.githubusercontent.com/6079002/137327595-4b70b5c3-cb55-4091-8608-67f0f5b063d4.jpg" width="300">
 
-The evaluation module should be placed on the bed and the printer and the module should be connected using usb cables to your computer. Then when running this program it will move each nozzle over the coil and determine the offset between the nozzles.
+The evaluation module should be placed on the bed and the printer and the module should be connected using usb cables to your computer. Then when running this program it will move each nozzle over the coil and determine the offset between the nozzles. This works because the nozzle will cause a decrease in the inductance of the coil as is described in this paper [future link]() ([future open access link]()). 
 
 # Typical usage
 1. Run the installer, which can be found here: https://github.com/martijnschouten/inductive_calibration_GUI/releases
