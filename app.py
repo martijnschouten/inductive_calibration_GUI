@@ -1,5 +1,4 @@
 from PyQt5 import QtWidgets, uic, QtTest
-import PyQt5.QtGui as QtGui
 from PyQt5.QtCore import Qt
 from pyqtgraph import GraphicsLayout
 import pyqtgraph as pg
@@ -80,27 +79,31 @@ class MainWindow(QtWidgets.QMainWindow):
         port_evm = self.port_device[self.ldc_combo.currentIndex()]
         try:
             self.Ldc1101evm = ldc1101evm(port_evm)
-            self.output_to_terminal("connection to ldc1101evm successfull")
         except:
             self.output_to_terminal("could not open port of the ldc1101evm. Please make sure there are no open connections\r\n")
-            return 0
+            print('could not open port of the ldc1101evm.')
+            return False
+        self.output_to_terminal("connection to ldc1101evm successfull")
             
         port_duet = self.port_device[self.duet_combo.currentIndex()]
         try:
             self.Diabase = diabase(port_duet)
-            self.output_to_terminal("connection to duet successfull")
         except:
             self.output_to_terminal("could not open port of the duet. Please make sure there are no open connections\r\n")
-            return 0
+            print('could not open port of the duet.')
+            return False
+        self.output_to_terminal("connection to duet successfull")
         
         self.Ldc1101evm.LHR_init()
         self.connected = True
+
+        return True
     
     def output_to_terminal(self,new_text):
         current_text = self.output_terminal.toPlainText()
         text =  new_text +"\r\n" + current_text
         self.output_terminal.setText(text)
-        QtGui.QApplication.processEvents()
+        QtWidgets.QApplication.processEvents()
 
     def update_tool_list(self):
         tools = self.tool_list_list.selectedItems()
@@ -155,7 +158,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def test_sensor(self):
         if self.connected == False:
-            self.connect()
+            if not self.connect():
+                return 0
 
         self.Ldc1101evm.flush()
         i1 = 0
@@ -181,7 +185,7 @@ class MainWindow(QtWidgets.QMainWindow):
             elif i1 > 0:
                 self.curve.setData(time_buf[1:i1],L[1:i1])
 
-            QtGui.QApplication.processEvents()
+            QtWidgets.QApplication.processEvents()
             i1 = i1 + 1
 
     def calibrate(self,cal_x):
@@ -269,7 +273,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
             self.Diabase.write_line('M400')
             #diabase.write_line('G28 Z')
-            QtGui.QApplication.processEvents()
+            QtWidgets.QApplication.processEvents()
             if self.stop_button_clicked:
                 self.stop_button_clicked = False
                 return 0
@@ -278,7 +282,7 @@ class MainWindow(QtWidgets.QMainWindow):
             print("selected tool "+ str(self.tool_list[0]))
             self.Diabase.write_line('M400')
 
-            QtGui.QApplication.processEvents()
+            QtWidgets.QApplication.processEvents()
             if self.stop_button_clicked:
                 self.stop_button_clicked = False
                 return 0
@@ -357,7 +361,7 @@ class MainWindow(QtWidgets.QMainWindow):
                             if (i5 ==0 and new_y >= y_stop) or (i5 == 1 and new_y <= y_start): 
                                 break
                         
-                        QtGui.QApplication.processEvents()
+                        QtWidgets.QApplication.processEvents()
                     
                     try:
                         loc[i3,i4,i5] = self.find_symmetry_axis(pos[int(i1/10):int(9/10*i1),i3,i4,i5],data[int(i1/10):int(9/10*i1),i3,i4,i5])
@@ -475,6 +479,7 @@ class MainWindow(QtWidgets.QMainWindow):
         settings_dict['fan_on'] = self.fan_box.isChecked()
         settings_dict['homing_on'] = self.homing_box.isChecked()
         settings_dict['ascend'] = self.ascend_box.isChecked()
+        settings_dict['version'] = '1.0.1'
         if self.update_tool_list():
             settings_dict['tool_list'] = self.tool_list
 

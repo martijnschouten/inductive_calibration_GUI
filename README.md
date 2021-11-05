@@ -25,7 +25,7 @@ On windows:
 1. Make a virtual environment by running `python -m venv venv`
 1. Activate the virtual environment by running `venv\Scripts\activate`
 1. Install the dependencies by running `pip install pyqt5 pyqtgraph pyserial pyaml scipy pyinstaller`
-
+1. Freeze the python app by `make.bat` in the terminal
 
 # Acknowledgement
 This work was developed within the Wearable Robotics programme, funded by the Dutch Research Council (NWO)
