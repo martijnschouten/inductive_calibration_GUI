@@ -1,8 +1,8 @@
-This program can be used to calibration the x and y offset of a multi-material 3D printer using LDC1101EVM evaluation module, to which a coil is mounted.
+This program can be used to calibration the x and y offset of a multi-material 3D printer using LDC1101EVM evaluation module, to which a coil is mounted with the axis perpendicular to the PCB.
 
 <img src="https://user-images.githubusercontent.com/6079002/137327595-4b70b5c3-cb55-4091-8608-67f0f5b063d4.jpg" width="300">
 
-The evaluation module should be placed on the bed and the printer and the module should be connected using usb cables to your computer. Then when running this program it will move each nozzle over the coil and determine the offset between the nozzles.
+The evaluation module should be placed on the bed and the printer and the module should be connected using usb cables to your computer. Then when running this program it will move each nozzle over the coil and determine the offset between the nozzles. This works because the nozzle will cause a decrease in the inductance of the coil as is described in this paper [future link]() ([future open access link]()). 
 
 # Typical usage
 1. Run the installer, which can be found here: https://github.com/martijnschouten/inductive_calibration_GUI/releases
@@ -25,7 +25,6 @@ On windows:
 1. Make a virtual environment by running `python -m venv venv`
 1. Activate the virtual environment by running `venv\Scripts\activate`
 1. Install the dependencies by running `pip install pyqt5 pyqtgraph pyserial pyaml scipy pyinstaller`
-1. Freeze the python app by `make.bat` in the terminal
 
 # Acknowledgement
 This work was developed within the Wearable Robotics programme, funded by the Dutch Research Council (NWO)
