@@ -1,4 +1,4 @@
-This program can be used to calibration the x and y offset of a multi-material 3D printer using LDC1101EVM evaluation module, to which a coil is mounted.
+This program can be used to calibration the x and y offset of a multi-material 3D printer using LDC1101EVM evaluation module, to which a coil is mounted with the axis perpendicular to the PCB.
 
 <img src="https://user-images.githubusercontent.com/6079002/137327595-4b70b5c3-cb55-4091-8608-67f0f5b063d4.jpg" width="300">
 
@@ -25,7 +25,6 @@ On windows:
 1. Make a virtual environment by running `python -m venv venv`
 1. Activate the virtual environment by running `venv\Scripts\activate`
 1. Install the dependencies by running `pip install pyqt5 pyqtgraph pyserial pyaml scipy pyinstaller`
-
 
 # Acknowledgement
 This work was developed within the Wearable Robotics programme, funded by the Dutch Research Council (NWO)
