@@ -17,6 +17,9 @@ The evaluation module should be placed on the bed and the printer and the module
 1. Run Calibrate Y. The printer will now start moving the nozzles over the coil
 1. Check that the found offsets make sense. And click on apply offsets.
 
+![interface](https://user-images.githubusercontent.com/6079002/143495261-422005bf-aa41-4a25-9483-159f47a30543.jpg)
+
+
 # Compilation instructions
 On windows:
 1. Make sure you have a working python installation (tested using python 3.7.7)
