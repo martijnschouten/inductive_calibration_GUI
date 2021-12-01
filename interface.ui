@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>610</height>
+    <width>757</width>
+    <height>798</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -65,6 +65,9 @@
             </item>
             <item row="0" column="1">
              <widget class="QDoubleSpinBox" name="x_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The x coordinate for which the nozzle is underneath the coil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="suffix">
                <string/>
               </property>
@@ -88,6 +91,9 @@
             </item>
             <item row="1" column="1">
              <widget class="QDoubleSpinBox" name="y_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The y coordinate for which the nozzle is underneath the coil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="minimum">
                <double>-999.990000000000009</double>
               </property>
@@ -108,6 +114,9 @@
             </item>
             <item row="2" column="1">
              <widget class="QDoubleSpinBox" name="z_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The z coordinate for which the nozzle is just above the coil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="maximum">
                <double>999.990000000000009</double>
               </property>
@@ -124,7 +133,11 @@
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="QDoubleSpinBox" name="range_box"/>
+             <widget class="QDoubleSpinBox" name="range_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The distance left and right of the coil location that will be scanned through&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="z_label_3">
@@ -134,7 +147,11 @@
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="QDoubleSpinBox" name="speed_box"/>
+             <widget class="QDoubleSpinBox" name="speed_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The speed at which the calibration will be performed&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
             <item row="5" column="0">
              <widget class="QLabel" name="temp_label">
@@ -145,6 +162,9 @@
             </item>
             <item row="5" column="1">
              <widget class="QSpinBox" name="temp_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The temperature to which the nozzles will be heated during the calibration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="maximum">
                <number>9999</number>
               </property>
@@ -159,6 +179,9 @@
             </item>
             <item row="6" column="1">
              <widget class="QSpinBox" name="bed_temp_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The temperature to which the bed will be heated during the calibration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="maximum">
                <number>9999</number>
               </property>
@@ -238,6 +261,9 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The COM port of the diabase&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
            </widget>
           </item>
           <item>
@@ -255,12 +281,18 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The com port of the LDC1101EVM&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
            </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QPushButton" name="connect_button">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Connect to the selected COM ports. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Connect</string>
               </property>
@@ -268,6 +300,9 @@
             </item>
             <item>
              <widget class="QPushButton" name="reload_button">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reload the available COM ports&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Reload</string>
               </property>
@@ -301,6 +336,9 @@
                 <width>100</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The tools that should be calibrated&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="selectionMode">
                <enum>QAbstractItemView::MultiSelection</enum>
@@ -374,10 +412,16 @@
               <property name="text">
                <string>Reference tool</string>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QComboBox" name="ref_combo">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The tool that will be used a reference for the offsets&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <item>
                <property name="text">
                 <string>0</string>
@@ -437,6 +481,9 @@
             </item>
             <item>
              <widget class="QCheckBox" name="ascend_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If tools should be ordered in ascending order&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>ascend</string>
               </property>
@@ -453,6 +500,9 @@
             </item>
             <item>
              <widget class="QCheckBox" name="descend_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If tools should be ordered in descending order&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>descend</string>
               </property>
@@ -467,6 +517,9 @@
             </item>
             <item>
              <widget class="QCheckBox" name="fan_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the layer fan should be enabled during calibration. Assumes fan is on P3.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Fan</string>
               </property>
@@ -474,6 +527,9 @@
             </item>
             <item>
              <widget class="QCheckBox" name="homing_box">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If homing should be performed each round&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Homing</string>
               </property>
@@ -507,6 +563,9 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear all data from the figure above&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>clear figure</string>
             </property>
@@ -520,6 +579,9 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stop the calibration or sensor test&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>stop</string>
             </property>
@@ -532,6 +594,9 @@
               <width>100</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Test the sensor by plotting and saving the measured inductance&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>Test sensor</string>
@@ -550,6 +615,9 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the calibration algorithm to find the tool offsets in the y direction&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Calibrate Y</string>
             </property>
@@ -562,6 +630,9 @@
               <width>150</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the calibration algorithm to find the tool offsets in the x direction&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>Calibrate X</string>
@@ -581,7 +652,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Rounds:</string>
+             <string>y rounds:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -595,6 +666,9 @@
               <width>100</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;How often the calibration algorithm will be run when calibrating in the y direction. Used for determining the repeatability of the method.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="minimum">
              <number>1</number>
@@ -613,7 +687,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Rounds:</string>
+             <string>x rounds:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -627,6 +701,9 @@
               <width>100</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;How often the calibration algorithm will be run when calibrating in the y direction. Used for determining the repeatability of the method.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="minimum">
              <number>1</number>
@@ -647,6 +724,9 @@
               <width>150</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Send the last measured offsets to the printer&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="layoutDirection">
              <enum>Qt::LeftToRight</enum>
@@ -684,6 +764,9 @@
               <height>0</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Filename to use for the file with the calibration data. When installed using installer, the default file location will be %appdata%\..\Local\Programs\Inductive calibration GUI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>data.mat</string>
             </property>
@@ -719,7 +802,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>640</width>
+     <width>757</width>
      <height>21</height>
     </rect>
    </property>

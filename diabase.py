@@ -61,12 +61,12 @@ class diabase:
     
     def set_tool_offset_differential(self,tool,extra_offset):
         """Function for setting tool offsets relative to the current tool offsets. To do so the printer will:
-        
+
         *  Select the tool
         *  Get the current position
         *  Set the tool offset to zero
         *  Measure the position again
-        *  -Set the tool offset to the last measured tool offset plus the addional tool offset
+        *  Set the tool offset to the last measured tool offset plus the addional tool offset
 
         :param tool: The tool number of the tool of which to set the offsets
         :param extra_offset: Dict with the additional tool offsets. The function expect a key 'x', 'y' or 'z' with the additional tool offset in the corresponding direction.

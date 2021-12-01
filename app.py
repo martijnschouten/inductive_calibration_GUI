@@ -182,6 +182,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def closeEvent(self, event):
         """Function for handling the window being closed. This makes sure the settings are saved when the window is closed.
+        
         :return: None
         :rtype: None
         """
@@ -189,6 +190,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def calibrate_y(self):
         """Function for handling the calibrate y button being pressed. This will run the calibration procedure and find the y offsets.
+        
         :return: None
         :rtype: None
         """
@@ -197,6 +199,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def calibrate_x(self):
         """Function for handling the calibrate x button being pressed. This will run the calibration procedure and find the x offsets.
+        
         :return: None
         :rtype: None
         """
@@ -205,6 +208,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def ascend_changed(self):
         """Function for handling the ascend checkbox being pressed. This will update the ascend setting and deselect the descend checkbox.
+        
         :return: None
         :rtype: None
         """
@@ -217,6 +221,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def descend_changed(self):
         """Function for handling the descend checkbox being pressed. This will update the ascend setting and deselect the ascend checkbox.
+        
         :return: None
         :rtype: None
         """
@@ -230,6 +235,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def test_sensor(self):
         """Function for handling the test sensor checkbox being pressed. This will just record the LDC1101EVM sensor values until the stop button is clicked and store the result in the file specified in the filename textbox.
+        
         :return: None
         :rtype: None
         """
@@ -266,6 +272,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def calibrate(self,cal_x):
         """Function for performing a calibration in x or y. This will just record the LDC1101EVM sensor values until the stop button is clicked and store the result in the file specified in the filename textbox.
+        
         :param cal_x: If True, calibrate in the x direction. If False, calibate in the y direction.
         :return: False if unsucceful, True if succefull
         :rtype: Boolean
@@ -551,6 +558,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def apply_offsets(self):
         """Function for handling the apply offset button being pressed. This will send the measured offsets to the printer.
+        
         :return: None
         :rtype: None
         """
@@ -569,6 +577,7 @@ class MainWindow(QtWidgets.QMainWindow):
     
     def func(self,x, o, a, b, c, d, e):
         """Polynomial function fitted to the measured inductance curve to determine the point of symmetry
+        
         :param x: List of x coordinates at which the function should be evaluated
         :param o: The point of symmetry
         :param a: Constant offset
@@ -583,6 +592,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def find_symmetry_axis(self,x,y):
         """Function for calculating the point of symmetry of a a symmetric curve
+        
         :param x: List of x coordinates 
         :param y: List of y coordinates
         :return: The oint of symmetry
@@ -601,6 +611,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def save_settings(self):
         """Function for saving settings to a settings.yaml file
+        
         :return: None
         :rtype: None
         """
@@ -627,6 +638,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def load_settings(self):
         """Function for loading settings to a settings.yaml file
+        
         :return: False if unsuccesful, True if succesfull
         :rtype: Boolean
         """
