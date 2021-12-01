@@ -7,16 +7,18 @@ The evaluation module should be placed on the bed and the printer and the module
 
 # Typical usage
 1. Run the installer, which can be found here: https://github.com/martijnschouten/inductive_calibration_GUI/releases
-1. Place the LDC1101EVM on the bed
-1. Connect the printer and the LDC1101EVM to the computer on which you ran the installer
-1. Manually move the printer such that the first tool is just above the coil.
-1. Run the program and copy the current location of the printer in x-coordinate coil, y-coordinate coil z-height test. Note that this does not need to be very precise
-1. Check that scanning range (default 2mm), speed (default 0.5mm/s), nozzle temperature (default 175) and bed temepature (default 0) are set to appropriate values
-1. Select the tools that need to be calibrated and select the tool relative to which the offset will be shown
-1. Run Calibrate X. The printer will now start moving the nozzles over the coil
-1. Check that the found offsets make sense. And click on apply offsets.
-1. Run Calibrate Y. The printer will now start moving the nozzles over the coil
-1. Check that the found offsets make sense. And click on apply offsets.
+2. Home the printer
+3. Go to the offsets tap and press measure height
+4. Place the LDC1101EVM on the bed
+5. Connect the printer and the LDC1101EVM to the computer on which you ran the installer
+6. Manually move the printer such that the first tool is just above the coil.
+7. Run the program and copy the current location of the printer in x-coordinate coil, y-coordinate coil z-height test. Note that this does not need to be very precise
+8. Check that scanning range (default 2mm), speed (default 0.5mm/s), nozzle temperature (default 175) and bed temepature (default 0) are set to appropriate values
+9. Select the tools that need to be calibrated and select the tool relative to which the offset will be shown
+10. Press Calibrate X. The printer will now start moving the nozzles over the coil
+11. Check that the found offsets make sense. And click on apply offsets.
+12. Press Calibrate Y. The printer will now start moving the nozzles over the coil
+13. Check that the found offsets make sense. And click on apply offsets.
 
 # Compilation instructions
 On windows:
@@ -28,6 +30,7 @@ On windows:
 1. Install the dependencies by running `pip install pyqt5 pyqtgraph pyserial pyaml scipy pyinstaller`
 1. Freeze the python app by running `make.bat` in the terminal
 
+For more information on the code read the [documentation](docs/build/latex/inductivecalibrationgui.pdf)
 # Acknowledgement
 This work was developed within the Wearable Robotics programme, funded by the Dutch Research Council (NWO)
 
