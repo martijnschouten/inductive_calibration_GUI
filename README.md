@@ -30,7 +30,7 @@ On windows:
 1. Install the dependencies by running `pip install pyqt5 pyqtgraph pyserial pyaml scipy pyinstaller`
 1. Freeze the python app by running `make.bat` in the terminal
 
-For more information on the code read the [documentation](gcode generator/docs/build/latex/inductivecalibrationgui.pdf)
+For more information on the code read the [documentation](inductive_calibration_GUI/docs/build/latex/inductivecalibrationgui.pdf)
 # Acknowledgement
 This work was developed within the Wearable Robotics programme, funded by the Dutch Research Council (NWO)
 
