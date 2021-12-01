@@ -29,7 +29,8 @@ On windows:
 1. Activate the virtual environment by running `venv\Scripts\activate`
 1. Install the dependencies by running `pip install pyqt5 pyqtgraph pyserial pyaml scipy pyinstaller`
 1. Freeze the python app by running `make.bat` in the terminal
-
+1. To make the installer, run installer.iss using inno setup compiler
+ 
 For more information on the code read the [documentation](docs/build/latex/inductivecalibrationgui.pdf)
 # Acknowledgement
 This work was developed within the Wearable Robotics programme, funded by the Dutch Research Council (NWO)
