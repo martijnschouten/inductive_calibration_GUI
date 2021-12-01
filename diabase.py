@@ -1,20 +1,31 @@
-# -*- coding: utf-8 -*-
 """
-Created on Sun Nov 24 14:51:20 2019
-
-@author: Martijn
+.. module:: diabase
+    :synopsis: This class handles the communication with the diabase 3D printer
+.. moduleauthor:: Martijn Schouten <github.com/martijnschouten>
 """
 
 import serial
-import struct
-import time
-from PyQt5 import QtTest
 
 class diabase:
+    attempts = 1000
+    """The number of lines to read before deciding the 'OK'  from the printer will never arrive"""
+
     def __init__(self, port):
+        """Code run when the diabase object is initialised. This initialises the communication with printer.
+
+        :param port: The full name of the port at which the printer can be found. Example: 'COM1'
+        :return: None
+        :rtype: None
+        """
         self.ser = serial.Serial(port,baudrate=57600,timeout=0.01)
         
     def write_line(self,string):
+        """Write a line of GCODE to the printer. This function will wait for an 'OK' from the printer, meaning that the command has finished executing (except for G1 commands). If it takes too to many attempts for the printer give an answer it will be assumed something went wrong and the function will return anyways.
+
+        :param string: The line of GCODE to write to the printer.
+        :return: None
+        :rtype: None
+        """
         self.ser.write(string.encode('utf-8')+b'\r\n')
         #print(string)
         old_result = self.ser.read(1)
@@ -26,11 +37,18 @@ class diabase:
                 break
             else:
                 old_result = new_result
-                if watchdog > 1000:
+                if watchdog > self.attempts:
                     print('watchdog in write_line triggered!')
                     break   
 
     def set_tool_offset(self, tool, pos):
+        """Function for setting tool offsets.
+
+        :param tool: The tool number of the tool of which to set the offsets
+        :param pos: Dict with the tool offsets. The function expect a key 'x', 'y' or 'z' with the tool offset in the corresponding direction.
+        :return: None
+        :rtype: None
+        """
         string = 'G10 P' + str(tool)
         if 'x' in pos:
             string = string + ' X' + str(pos['x'])
@@ -42,15 +60,27 @@ class diabase:
         self.write_line(string)
     
     def set_tool_offset_differential(self,tool,extra_offset):
+        """Function for setting tool offsets relative to the current tool offsets. To do so the printer will:
+        -Select the tool
+        -Get the current position
+        -Set the tool offset to zero
+        -Measure the position again
+        -Set the tool offset to the last measured tool offset plus the addional tool offset
 
+        :param tool: The tool number of the tool of which to set the offsets
+        :param extra_offset: Dict with the additional tool offsets. The function expect a key 'x', 'y' or 'z' with the additional tool offset in the corresponding direction.
+        :return: None
+        :rtype: None
+        """
+
+        #Select the tool
         self.write_line('T'+str(tool))
         self.write_line('M400')
-        #time.sleep(5)
-        pos0 = self.get_current_position()
-        #print(pos0['x'])
-        #print(pos0['y'])
-        #print(pos0['z'])
 
+        #Get the current position
+        pos0 = self.get_current_position()
+
+        #Set the tool offset to zero
         pos = {}
         if 'x' in extra_offset:
             pos['x'] = 0
@@ -58,14 +88,12 @@ class diabase:
             pos['y'] = 0
         if 'z' in extra_offset:
             pos['z'] = 0
-        
         self.set_tool_offset(tool, pos)
 
+        #Measure the position again
         pos1 = self.get_current_position()
-        #print(pos1['x'])
-        #print(pos1['y'])
-        #print(pos1['z'])
 
+        #Set the tool offset to the last measured tool offset plus the addional tool offset
         tool_offset = {}
         new_offset = {}
         if 'x' in extra_offset:
@@ -82,14 +110,24 @@ class diabase:
             tool_offset['z'] = pos0['z'] - pos1['z']
             new_offset['z'] = tool_offset['z'] + extra_offset['z']
             print(new_offset['z'])
-
         self.set_tool_offset(tool, new_offset)
         
     def store_offset_parameters(self):
+        """Function for storing the current tool offsets in flash such that they will still be there when the printer is restarted.
+
+        :return: None
+        :rtype: None
+        """
+
         string = 'M500 P10'
         self.ser.write(string.encode('utf-8')+b'\r\n')
 
     def get_current_position(self):
+        """Function for getting the current position of the printer using a M114 command
+
+        :return: Dict with the current position. The dict contains a key 'x', 'y' or 'z' with the current position in the corresponding direction.
+        :rtype: Dict
+        """
         string = 'M114'
         self.ser.write(string.encode('utf-8')+b'\r\n')
         answer = list()
@@ -128,7 +166,6 @@ class diabase:
             #     self.ser.write(string.encode('utf-8')+b'\r\n')
             if len(x_str) > 0 and len(y_str) > 0 and len(z_str) > 0:
                 break
-            #QtTest.QTest.qWait(1) 
         
         pos = {}
         try:
@@ -150,4 +187,10 @@ class diabase:
         return pos
 
     def close(self):
+        """Function for closing the serial communication with the printer
+
+        :return: None
+        :rtype: None
+        """
+
         self.ser.close()

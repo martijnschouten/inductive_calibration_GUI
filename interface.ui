@@ -656,25 +656,6 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="update_coil_button">
-            <property name="minimumSize">
-             <size>
-              <width>115</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Update coil position</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
         <item>
@@ -739,7 +720,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>18</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
