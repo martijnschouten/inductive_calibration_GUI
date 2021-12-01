@@ -1,0 +1,57 @@
+\indexentry{module@\spxentry{module}!app@\spxentry{app}|hyperpage}{3}
+\indexentry{app@\spxentry{app}!module@\spxentry{module}|hyperpage}{3}
+\indexentry{module@\spxentry{module}!app@\spxentry{app}|hyperpage}{3}
+\indexentry{app@\spxentry{app}!module@\spxentry{module}|hyperpage}{3}
+\indexentry{MainWindow (class in app)@\spxentry{MainWindow}\spxextra{class in app}|hyperpage}{3}
+\indexentry{apply\_offsets() (app.MainWindow method)@\spxentry{apply\_offsets()}\spxextra{app.MainWindow method}|hyperpage}{3}
+\indexentry{ascend (app.MainWindow attribute)@\spxentry{ascend}\spxextra{app.MainWindow attribute}|hyperpage}{3}
+\indexentry{ascend\_changed() (app.MainWindow method)@\spxentry{ascend\_changed()}\spxextra{app.MainWindow method}|hyperpage}{3}
+\indexentry{calibrate() (app.MainWindow method)@\spxentry{calibrate()}\spxextra{app.MainWindow method}|hyperpage}{3}
+\indexentry{calibrate\_x() (app.MainWindow method)@\spxentry{calibrate\_x()}\spxextra{app.MainWindow method}|hyperpage}{3}
+\indexentry{calibrate\_y() (app.MainWindow method)@\spxentry{calibrate\_y()}\spxextra{app.MainWindow method}|hyperpage}{3}
+\indexentry{clear\_figure() (app.MainWindow method)@\spxentry{clear\_figure()}\spxextra{app.MainWindow method}|hyperpage}{3}
+\indexentry{closeEvent() (app.MainWindow method)@\spxentry{closeEvent()}\spxextra{app.MainWindow method}|hyperpage}{3}
+\indexentry{connect() (app.MainWindow method)@\spxentry{connect()}\spxextra{app.MainWindow method}|hyperpage}{3}
+\indexentry{connected (app.MainWindow attribute)@\spxentry{connected}\spxextra{app.MainWindow attribute}|hyperpage}{3}
+\indexentry{descend\_changed() (app.MainWindow method)@\spxentry{descend\_changed()}\spxextra{app.MainWindow method}|hyperpage}{4}
+\indexentry{duet\_port (app.MainWindow attribute)@\spxentry{duet\_port}\spxextra{app.MainWindow attribute}|hyperpage}{4}
+\indexentry{find\_symmetry\_axis() (app.MainWindow method)@\spxentry{find\_symmetry\_axis()}\spxextra{app.MainWindow method}|hyperpage}{4}
+\indexentry{func() (app.MainWindow method)@\spxentry{func()}\spxextra{app.MainWindow method}|hyperpage}{4}
+\indexentry{load\_settings() (app.MainWindow method)@\spxentry{load\_settings()}\spxextra{app.MainWindow method}|hyperpage}{4}
+\indexentry{offset\_direction (app.MainWindow attribute)@\spxentry{offset\_direction}\spxextra{app.MainWindow attribute}|hyperpage}{4}
+\indexentry{offset\_list (app.MainWindow attribute)@\spxentry{offset\_list}\spxextra{app.MainWindow attribute}|hyperpage}{4}
+\indexentry{offset\_tool\_list (app.MainWindow attribute)@\spxentry{offset\_tool\_list}\spxextra{app.MainWindow attribute}|hyperpage}{4}
+\indexentry{output\_to\_terminal() (app.MainWindow method)@\spxentry{output\_to\_terminal()}\spxextra{app.MainWindow method}|hyperpage}{4}
+\indexentry{reload() (app.MainWindow method)@\spxentry{reload()}\spxextra{app.MainWindow method}|hyperpage}{4}
+\indexentry{save\_settings() (app.MainWindow method)@\spxentry{save\_settings()}\spxextra{app.MainWindow method}|hyperpage}{4}
+\indexentry{stop() (app.MainWindow method)@\spxentry{stop()}\spxextra{app.MainWindow method}|hyperpage}{4}
+\indexentry{stop\_button\_clicked (app.MainWindow attribute)@\spxentry{stop\_button\_clicked}\spxextra{app.MainWindow attribute}|hyperpage}{4}
+\indexentry{test\_sensor() (app.MainWindow method)@\spxentry{test\_sensor()}\spxextra{app.MainWindow method}|hyperpage}{5}
+\indexentry{update\_tool\_list() (app.MainWindow method)@\spxentry{update\_tool\_list()}\spxextra{app.MainWindow method}|hyperpage}{5}
+\indexentry{main() (in module app)@\spxentry{main()}\spxextra{in module app}|hyperpage}{5}
+\indexentry{module@\spxentry{module}!diabase@\spxentry{diabase}|hyperpage}{7}
+\indexentry{diabase@\spxentry{diabase}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{module@\spxentry{module}!diabase@\spxentry{diabase}|hyperpage}{7}
+\indexentry{diabase@\spxentry{diabase}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{diabase (class in diabase)@\spxentry{diabase}\spxextra{class in diabase}|hyperpage}{7}
+\indexentry{attempts (diabase.diabase attribute)@\spxentry{attempts}\spxextra{diabase.diabase attribute}|hyperpage}{7}
+\indexentry{close() (diabase.diabase method)@\spxentry{close()}\spxextra{diabase.diabase method}|hyperpage}{7}
+\indexentry{get\_current\_position() (diabase.diabase method)@\spxentry{get\_current\_position()}\spxextra{diabase.diabase method}|hyperpage}{7}
+\indexentry{set\_tool\_offset() (diabase.diabase method)@\spxentry{set\_tool\_offset()}\spxextra{diabase.diabase method}|hyperpage}{7}
+\indexentry{set\_tool\_offset\_differential() (diabase.diabase method)@\spxentry{set\_tool\_offset\_differential()}\spxextra{diabase.diabase method}|hyperpage}{7}
+\indexentry{store\_offset\_parameters() (diabase.diabase method)@\spxentry{store\_offset\_parameters()}\spxextra{diabase.diabase method}|hyperpage}{8}
+\indexentry{write\_line() (diabase.diabase method)@\spxentry{write\_line()}\spxextra{diabase.diabase method}|hyperpage}{8}
+\indexentry{module@\spxentry{module}!ldc1101evm@\spxentry{ldc1101evm}|hyperpage}{9}
+\indexentry{ldc1101evm@\spxentry{ldc1101evm}!module@\spxentry{module}|hyperpage}{9}
+\indexentry{module@\spxentry{module}!ldc1101evm@\spxentry{ldc1101evm}|hyperpage}{9}
+\indexentry{ldc1101evm@\spxentry{ldc1101evm}!module@\spxentry{module}|hyperpage}{9}
+\indexentry{ldc1101evm (class in ldc1101evm)@\spxentry{ldc1101evm}\spxextra{class in ldc1101evm}|hyperpage}{9}
+\indexentry{Csensor (ldc1101evm.ldc1101evm attribute)@\spxentry{Csensor}\spxextra{ldc1101evm.ldc1101evm attribute}|hyperpage}{9}
+\indexentry{LHR\_init() (ldc1101evm.ldc1101evm method)@\spxentry{LHR\_init()}\spxextra{ldc1101evm.ldc1101evm method}|hyperpage}{9}
+\indexentry{close() (ldc1101evm.ldc1101evm method)@\spxentry{close()}\spxextra{ldc1101evm.ldc1101evm method}|hyperpage}{9}
+\indexentry{flush() (ldc1101evm.ldc1101evm method)@\spxentry{flush()}\spxextra{ldc1101evm.ldc1101evm method}|hyperpage}{9}
+\indexentry{get\_LHR\_data() (ldc1101evm.ldc1101evm method)@\spxentry{get\_LHR\_data()}\spxextra{ldc1101evm.ldc1101evm method}|hyperpage}{9}
+\indexentry{lock (ldc1101evm.ldc1101evm attribute)@\spxentry{lock}\spxextra{ldc1101evm.ldc1101evm attribute}|hyperpage}{9}
+\indexentry{received\_bytes (ldc1101evm.ldc1101evm attribute)@\spxentry{received\_bytes}\spxextra{ldc1101evm.ldc1101evm attribute}|hyperpage}{9}
+\indexentry{serial\_daemon() (ldc1101evm.ldc1101evm method)@\spxentry{serial\_daemon()}\spxextra{ldc1101evm.ldc1101evm method}|hyperpage}{9}
+\indexentry{stop\_thread (ldc1101evm.ldc1101evm attribute)@\spxentry{stop\_thread}\spxextra{ldc1101evm.ldc1101evm attribute}|hyperpage}{10}

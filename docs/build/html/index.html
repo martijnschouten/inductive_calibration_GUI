@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to inductive calibration GUI’s documentation! &mdash; inductive calibration GUI V1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> inductive calibration GUI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Welcome to inductive calibration GUI’s documentation!</a></li>
+<li><a class="reference internal" href="#app-mainwindow-class">App mainwindow class</a></li>
+<li><a class="reference internal" href="#module-diabase">diabase class</a></li>
+<li><a class="reference internal" href="#ldc1101evm-class">ldc1101evm class</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">inductive calibration GUI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Welcome to inductive calibration GUI’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-inductive-calibration-gui-s-documentation">
+<h1>Welcome to inductive calibration GUI’s documentation!<a class="headerlink" href="#welcome-to-inductive-calibration-gui-s-documentation" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>This documentation documenents the code of a GUI for calibrating a Diabase H-Series 3D printer in x and y using and LDC1101EVM evaluation module. The easiest way to run a frozen binary which can be found in <a class="reference external" href="https://github.com/martijnschouten/inductive_calibration_GUI/releases">releases</a></p>
+<p>The inductive calibraiton GUI consists of three classes. The mainwindow of the app contain the entire GUI. The diabase class implements the communication with the diabase 3D printer and the ldc1101evm class implements the communication with the LDC1101EVM evaluation module.</p>
+</section>
+<section id="app-mainwindow-class">
+<h1>App mainwindow class<a class="headerlink" href="#app-mainwindow-class" title="Permalink to this headline"></a></h1>
+<span class="target" id="module-app"></span><span class="target" id="module-0"></span><dl class="py class">
+<dt class="sig sig-object py" id="app.MainWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">MainWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt5.QtWidgets.QMainWindow</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.apply_offsets">
+<span class="sig-name descname"><span class="pre">apply_offsets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.apply_offsets" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the apply offset button being pressed. This will send the measured offsets to the printer.
+:return: None
+:rtype: None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.MainWindow.ascend">
+<span class="sig-name descname"><span class="pre">ascend</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#app.MainWindow.ascend" title="Permalink to this definition"></a></dt>
+<dd><p>If the tools should be calibrated in ascending (True) or descending (False) order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.ascend_changed">
+<span class="sig-name descname"><span class="pre">ascend_changed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.ascend_changed" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the ascend checkbox being pressed. This will update the ascend setting and deselect the descend checkbox.
+:return: None
+:rtype: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.calibrate">
+<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cal_x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.calibrate" title="Permalink to this definition"></a></dt>
+<dd><p>Function for performing a calibration in x or y. This will just record the LDC1101EVM sensor values until the stop button is clicked and store the result in the file specified in the filename textbox.
+:param cal_x: If True, calibrate in the x direction. If False, calibate in the y direction.
+:return: False if unsucceful, True if succefull
+:rtype: Boolean</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.calibrate_x">
+<span class="sig-name descname"><span class="pre">calibrate_x</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.calibrate_x" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the calibrate x button being pressed. This will run the calibration procedure and find the x offsets.
+:return: None
+:rtype: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.calibrate_y">
+<span class="sig-name descname"><span class="pre">calibrate_y</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.calibrate_y" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the calibrate y button being pressed. This will run the calibration procedure and find the y offsets.
+:return: None
+:rtype: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.clear_figure">
+<span class="sig-name descname"><span class="pre">clear_figure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.clear_figure" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the clear figure button being pressed. This will clear the graph in the GUI and reinitialise it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.closeEvent">
+<span class="sig-name descname"><span class="pre">closeEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.closeEvent" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the window being closed. This makes sure the settings are saved when the window is closed.
+:return: None
+:rtype: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.connect" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the connect button being pressed. This will attempted to connect to the selected COM ports.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if succesfull, False if unsuccesfull</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.MainWindow.connected">
+<span class="sig-name descname"><span class="pre">connected</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#app.MainWindow.connected" title="Permalink to this definition"></a></dt>
+<dd><p>If a connection to the LDC1101EVM and diabase has already been made</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.descend_changed">
+<span class="sig-name descname"><span class="pre">descend_changed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.descend_changed" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the descend checkbox being pressed. This will update the ascend setting and deselect the ascend checkbox.
+:return: None
+:rtype: None</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.MainWindow.duet_port">
+<span class="sig-name descname"><span class="pre">duet_port</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#app.MainWindow.duet_port" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the port the duet is connected to</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.find_symmetry_axis">
+<span class="sig-name descname"><span class="pre">find_symmetry_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.find_symmetry_axis" title="Permalink to this definition"></a></dt>
+<dd><p>Function for calculating the point of symmetry of a a symmetric curve
+:param x: List of x coordinates 
+:param y: List of y coordinates
+:return: The oint of symmetry
+:rtype: float</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.func">
+<span class="sig-name descname"><span class="pre">func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.func" title="Permalink to this definition"></a></dt>
+<dd><p>Polynomial function fitted to the measured inductance curve to determine the point of symmetry
+:param x: List of x coordinates at which the function should be evaluated
+:param o: The point of symmetry
+:param a: Constant offset
+:param b: Constant before the square
+:param c: Constant before the to the power 4
+:param d: Constant before the to the power 6
+:param e: Constant before the to the power 8
+:return: The output of the polynomial function
+:rtype: Boolean</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.load_settings">
+<span class="sig-name descname"><span class="pre">load_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.load_settings" title="Permalink to this definition"></a></dt>
+<dd><p>Function for loading settings to a settings.yaml file
+:return: False if unsuccesful, True if succesfull
+:rtype: Boolean</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.MainWindow.offset_direction">
+<span class="sig-name descname"><span class="pre">offset_direction</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#app.MainWindow.offset_direction" title="Permalink to this definition"></a></dt>
+<dd><p>If True the last run calibration was in the x direction, if False it was in the y direction</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.MainWindow.offset_list">
+<span class="sig-name descname"><span class="pre">offset_list</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#app.MainWindow.offset_list" title="Permalink to this definition"></a></dt>
+<dd><p>A list with the last found tool offsets belonging to the tools in <a class="reference internal" href="#app.MainWindow.offset_tool_list" title="app.MainWindow.offset_tool_list"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MainWindow.offset_tool_list</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.MainWindow.offset_tool_list">
+<span class="sig-name descname"><span class="pre">offset_tool_list</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#app.MainWindow.offset_tool_list" title="Permalink to this definition"></a></dt>
+<dd><p>A list of the tool numbers belonging to the tool offsets in <a class="reference internal" href="#app.MainWindow.offset_list" title="app.MainWindow.offset_list"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MainWindow.offset_list</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.output_to_terminal">
+<span class="sig-name descname"><span class="pre">output_to_terminal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.output_to_terminal" title="Permalink to this definition"></a></dt>
+<dd><p>Function for writing output to the terminal text box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.reload">
+<span class="sig-name descname"><span class="pre">reload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.reload" title="Permalink to this definition"></a></dt>
+<dd><p>Scans all COM ports and checks the name of all COM ports. If a name with “USB Serial Device” or “Duet” is found this it is selected as the printer port. If a name with ‘EVM’ is found this port is selected to be the port with the LDC1101EVM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.save_settings">
+<span class="sig-name descname"><span class="pre">save_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.save_settings" title="Permalink to this definition"></a></dt>
+<dd><p>Function for saving settings to a settings.yaml file
+:return: None
+:rtype: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the stop button being pressed. This will set a variable that will stop the running processes when possible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.MainWindow.stop_button_clicked">
+<span class="sig-name descname"><span class="pre">stop_button_clicked</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#app.MainWindow.stop_button_clicked" title="Permalink to this definition"></a></dt>
+<dd><p>Becomes True if the stop button has been clicked, until the measurement is stopped, then it becomes False again</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.test_sensor">
+<span class="sig-name descname"><span class="pre">test_sensor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.test_sensor" title="Permalink to this definition"></a></dt>
+<dd><p>Function for handling the test sensor checkbox being pressed. This will just record the LDC1101EVM sensor values until the stop button is clicked and store the result in the file specified in the filename textbox.
+:return: None
+:rtype: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.MainWindow.update_tool_list">
+<span class="sig-name descname"><span class="pre">update_tool_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.MainWindow.update_tool_list" title="Permalink to this definition"></a></dt>
+<dd><p>Function for reading out the selected tools and the reference tool and putting them in the right order. The reference tool always will go first, then the other tools follow in either ascending or descending order, depending on whether ascend or descend is selected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.main">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.main" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-diabase">
+<span id="diabase-class"></span><h1>diabase class<a class="headerlink" href="#module-diabase" title="Permalink to this headline"></a></h1>
+<span class="target" id="module-1"></span><dl class="py class">
+<dt class="sig sig-object py" id="diabase.diabase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diabase.</span></span><span class="sig-name descname"><span class="pre">diabase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#diabase.diabase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diabase.diabase.attempts">
+<span class="sig-name descname"><span class="pre">attempts</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000</span></em><a class="headerlink" href="#diabase.diabase.attempts" title="Permalink to this definition"></a></dt>
+<dd><p>The number of lines to read before deciding the ‘OK’  from the printer will never arrive</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diabase.diabase.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#diabase.diabase.close" title="Permalink to this definition"></a></dt>
+<dd><p>Function for closing the serial communication with the printer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diabase.diabase.get_current_position">
+<span class="sig-name descname"><span class="pre">get_current_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#diabase.diabase.get_current_position" title="Permalink to this definition"></a></dt>
+<dd><p>Function for getting the current position of the printer using a M114 command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dict with the current position. The dict contains a key ‘x’, ‘y’ or ‘z’ with the current position in the corresponding direction.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diabase.diabase.set_tool_offset">
+<span class="sig-name descname"><span class="pre">set_tool_offset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#diabase.diabase.set_tool_offset" title="Permalink to this definition"></a></dt>
+<dd><p>Function for setting tool offsets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tool</strong> – The tool number of the tool of which to set the offsets</p></li>
+<li><p><strong>pos</strong> – Dict with the tool offsets. The function expect a key ‘x’, ‘y’ or ‘z’ with the tool offset in the corresponding direction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diabase.diabase.set_tool_offset_differential">
+<span class="sig-name descname"><span class="pre">set_tool_offset_differential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_offset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#diabase.diabase.set_tool_offset_differential" title="Permalink to this definition"></a></dt>
+<dd><p>Function for setting tool offsets relative to the current tool offsets. To do so the printer will:</p>
+<ul class="simple">
+<li><p>Select the tool</p></li>
+<li><p>Get the current position</p></li>
+<li><p>Set the tool offset to zero</p></li>
+<li><p>Measure the position again</p></li>
+<li><p>-Set the tool offset to the last measured tool offset plus the addional tool offset</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tool</strong> – The tool number of the tool of which to set the offsets</p></li>
+<li><p><strong>extra_offset</strong> – Dict with the additional tool offsets. The function expect a key ‘x’, ‘y’ or ‘z’ with the additional tool offset in the corresponding direction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diabase.diabase.store_offset_parameters">
+<span class="sig-name descname"><span class="pre">store_offset_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#diabase.diabase.store_offset_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Function for storing the current tool offsets in flash such that they will still be there when the printer is restarted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diabase.diabase.write_line">
+<span class="sig-name descname"><span class="pre">write_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#diabase.diabase.write_line" title="Permalink to this definition"></a></dt>
+<dd><p>Write a line of GCODE to the printer. This function will wait for an ‘OK’ from the printer, meaning that the command has finished executing (except for G1 commands). If it takes too to many attempts for the printer give an answer it will be assumed something went wrong and the function will return anyways.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>string</strong> – The line of GCODE to write to the printer.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="ldc1101evm-class">
+<h1>ldc1101evm class<a class="headerlink" href="#ldc1101evm-class" title="Permalink to this headline"></a></h1>
+<span class="target" id="module-ldc1101evm"></span><span class="target" id="module-2"></span><dl class="py class">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ldc1101evm.</span></span><span class="sig-name descname"><span class="pre">ldc1101evm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ldc1101evm.ldc1101evm" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm.Csensor">
+<span class="sig-name descname"><span class="pre">Csensor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.2e-09</span></em><a class="headerlink" href="#ldc1101evm.ldc1101evm.Csensor" title="Permalink to this definition"></a></dt>
+<dd><p>Value of the capacitor soldered onto the LDC1101EVM. This will affect the measured inductance since the LDC1101EVM determines the osciallation frequency of an LC tank with this capaictor and the inductor to be measured.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm.LHR_init">
+<span class="sig-name descname"><span class="pre">LHR_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ldc1101evm.ldc1101evm.LHR_init" title="Permalink to this definition"></a></dt>
+<dd><p>Function for initialising a high resolution measurement. A high resolution measurement is 24 bit and has no R measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ldc1101evm.ldc1101evm.close" title="Permalink to this definition"></a></dt>
+<dd><p>Close the serial connection and tell the daemon to go kill itself.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm.flush">
+<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ldc1101evm.ldc1101evm.flush" title="Permalink to this definition"></a></dt>
+<dd><p>Delete all currently stored measurements</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm.get_LHR_data">
+<span class="sig-name descname"><span class="pre">get_LHR_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">down_sample_ratio</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ldc1101evm.ldc1101evm.get_LHR_data" title="Permalink to this definition"></a></dt>
+<dd><p>Function getting the inductance measured by the LDC1101EVM in LHR mode. To put it in LHR mode run <a class="reference internal" href="#ldc1101evm.ldc1101evm.LHR_init" title="ldc1101evm.ldc1101evm.LHR_init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ldc1101evm.LHR_init()</span></code></a> first. This function blocks until an inductance value that has not been read is available. To delete all currently stored measurements run <a class="reference internal" href="#ldc1101evm.ldc1101evm.flush" title="ldc1101evm.ldc1101evm.flush"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ldc1101evm.flush()</span></code></a> first.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>down_sample_ratio</strong> – How much the output should be downsampled. This reduces the sampling rate but increases the effective resolution by taking the average.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The measured inductance</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm.lock">
+<span class="sig-name descname"><span class="pre">lock</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;unlocked</span> <span class="pre">_thread.lock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#ldc1101evm.ldc1101evm.lock" title="Permalink to this definition"></a></dt>
+<dd><p>Mutex for making sure the serial daemon and the other functions don’t try to access <a class="reference internal" href="#ldc1101evm.ldc1101evm.received_bytes" title="ldc1101evm.ldc1101evm.received_bytes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ldc1101evm.received_bytes</span></code></a> at the same time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm.received_bytes">
+<span class="sig-name descname"><span class="pre">received_bytes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">b''</span></em><a class="headerlink" href="#ldc1101evm.ldc1101evm.received_bytes" title="Permalink to this definition"></a></dt>
+<dd><p>Stores all the bytes received from the LDC1101EVM</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm.serial_daemon">
+<span class="sig-name descname"><span class="pre">serial_daemon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ldc1101evm.ldc1101evm.serial_daemon" title="Permalink to this definition"></a></dt>
+<dd><p>The serial daemon which is run in a seperate thread as the rest and just puts all the received bytes in <a class="reference internal" href="#ldc1101evm.ldc1101evm.received_bytes" title="ldc1101evm.ldc1101evm.received_bytes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ldc1101evm.received_bytes</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ldc1101evm.ldc1101evm.stop_thread">
+<span class="sig-name descname"><span class="pre">stop_thread</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#ldc1101evm.ldc1101evm.stop_thread" title="Permalink to this definition"></a></dt>
+<dd><p>If set to True, the serial daemon will kill itself</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Martijn Schouten.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
