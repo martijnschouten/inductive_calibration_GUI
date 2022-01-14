@@ -22,6 +22,8 @@ class ldc1101evm:
     Csensor = 1200e-12
     """Value of the capacitor soldered onto the LDC1101EVM. This will affect the measured inductance since the LDC1101EVM determines the osciallation frequency of an LC tank with this capaictor and the inductor to be measured."""
 
+    error = False
+
     def __init__(self, port):
         """Code run when the ldc1101evm object is initialised. This initialises the communication with LDC1101EVM and start the serial daemon in a seperate thread.
 
@@ -48,6 +50,7 @@ class ldc1101evm:
                     received_bytes_local = bytes(self.ser.read(8))
                 except Exception as e:
                     print('error: could not read data from LDC1101')
+                    self.error = True
                     break
             with self.lock:
                 self.received_bytes = self.received_bytes + received_bytes_local

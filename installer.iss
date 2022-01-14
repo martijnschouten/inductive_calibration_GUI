@@ -6,7 +6,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{8289447E-9572-4CF3-A2CD-841289716F65}
 AppName=Inductive calibration GUI
-AppVersion=1.0.2
+AppVersion=1.0.3
 ;AppVerName=Inductive calibration GUI 1.0.1
 AppPublisher=Martijn Schouten
 DefaultDirName={autopf}\Inductive calibration GUI

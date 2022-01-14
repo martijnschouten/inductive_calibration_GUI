@@ -7,7 +7,6 @@
 import serial
 
 class diabase:
-    attempts = 1000
     """The number of lines to read before deciding the 'OK'  from the printer will never arrive"""
 
     def __init__(self, port):
@@ -19,7 +18,7 @@ class diabase:
         """
         self.ser = serial.Serial(port,baudrate=57600,timeout=0.01)
         
-    def write_line(self,string):
+    def write_line(self,string,attempts):
         """Write a line of GCODE to the printer. This function will wait for an 'OK' from the printer, meaning that the command has finished executing (except for G1 commands). If it takes too to many attempts for the printer give an answer it will be assumed something went wrong and the function will return anyways.
 
         :param string: The line of GCODE to write to the printer.
@@ -37,8 +36,8 @@ class diabase:
                 break
             else:
                 old_result = new_result
-                if watchdog > self.attempts:
-                    print('watchdog in write_line triggered!')
+                if watchdog > attempts:
+                    print('watchdog in write_line triggered! sting to ok: '+string)
                     break   
 
     def set_tool_offset(self, tool, pos):
@@ -57,7 +56,7 @@ class diabase:
         if 'z' in pos:
             string = string + ' Z' + str(pos['z'])
         #print(string)
-        self.write_line(string)
+        self.write_line(string,1000)
     
     def set_tool_offset_differential(self,tool,extra_offset):
         """Function for setting tool offsets relative to the current tool offsets. To do so the printer will:
@@ -75,8 +74,8 @@ class diabase:
         """
 
         #Select the tool
-        self.write_line('T'+str(tool))
-        self.write_line('M400')
+        self.write_line('T'+str(tool),10000)
+        self.write_line('M400',10000)
 
         #Get the current position
         pos0 = self.get_current_position()

@@ -41,6 +41,8 @@ class MainWindow(QtWidgets.QMainWindow):
     ascend = True
     """If the tools should be calibrated in ascending (True) or descending (False) order."""
 
+    calibration_running = False
+
     def __init__(self, *args, **kwargs):
         """Code run when the GUI is startup. Used to connect signals from the GUI to functions in this class.
 
@@ -252,6 +254,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.curve = self.sig_graph.plot()
         
         while(1):
+            if self.Ldc1101evm.error:
+                self.output_to_terminal('Error in communication with LDC1101EVM. Please restart')
+                return 0
             if self.stop_button_clicked:
                 self.stop_button_clicked = False
                 time_buf = time_buf[1:i1]
@@ -277,6 +282,7 @@ class MainWindow(QtWidgets.QMainWindow):
         :return: False if unsucceful, True if succefull
         :rtype: Boolean
         """
+        self.calibration_running = True
 
         if self.connected == False:
             self.connect()
@@ -316,34 +322,36 @@ class MainWindow(QtWidgets.QMainWindow):
 
         #Try to update the tool list.
         if not self.update_tool_list():
+            self.calibration_running = False
             return False
 
         #attempt to set the layer fan speed
         try:
             if self.fan_box.isChecked():
-                self.Diabase.write_line('M106 P3 S255')
+                self.Diabase.write_line('M106 P3 S255',100)
             else:
-                self.Diabase.write_line('M106 P3 S0')
+                self.Diabase.write_line('M106 P3 S0',100)
         except:
             self.output_to_terminal('error: could not find a Duet')
+            self.calibration_running = False
             return False
 
         #heat up the tools
         for i1 in range(len(self.tool_list)):
-            self.Diabase.write_line('G10 P%.0f R%.0f  S%.0f' % (self.tool_list[i1],self.temp_box.value(),self.temp_box.value()))
+            self.Diabase.write_line('G10 P%.0f R%.0f  S%.0f' % (self.tool_list[i1],self.temp_box.value(),self.temp_box.value()),10000)
         
         #heat up the bed
-        self.Diabase.write_line('M140 S%.0f' % (self.bed_temp_box.value()))
+        self.Diabase.write_line('M140 S%.0f' % (self.bed_temp_box.value()),100)
 
         time.sleep(1)
         
         #wait the bed to heat up.
         print("doing the M116")
-        self.Diabase.write_line('M116')
+        self.Diabase.write_line('M116',50000)
 
         print("received the M116")
         #select coordinate system 1 (because the coordinate system might have been changed during the z calibration)
-        self.Diabase.write_line('G54')
+        self.Diabase.write_line('G54',100)
 
         #reinitialise the graph
         self.curve = list()
@@ -360,13 +368,13 @@ class MainWindow(QtWidgets.QMainWindow):
         for cycle in range(rounds):
             #home the printer and measure the z height. If the homing box is checked the printer is homed every round, otherwise it is calibration only during the first round.
             if self.homing_box.isChecked() or cycle ==0:     
-                self.Diabase.write_line('G28')
-                self.Diabase.write_line('G90')
-                self.Diabase.write_line('G1 X0 Y0 Z8 F8000')
-                self.Diabase.write_line('G30')
+                self.Diabase.write_line('G28',5000)
+                self.Diabase.write_line('G90',5000)
+                self.Diabase.write_line('G1 X0 Y0 Z8 F8000',5000)
+                self.Diabase.write_line('G30',1000)
 
             #wait for homing to finish
-            self.Diabase.write_line('M400')
+            self.Diabase.write_line('M400',1000)
 
             #attempt to make the GUI more responsive
             QtWidgets.QApplication.processEvents()
@@ -374,12 +382,13 @@ class MainWindow(QtWidgets.QMainWindow):
             #stop the calibration if the stop button was clicked.
             if self.stop_button_clicked:
                 self.stop_button_clicked = False
+                self.calibration_running = False
                 return 0
             
             #select the first tool
-            self.Diabase.write_line('T'+str(self.tool_list[0]))
+            self.Diabase.write_line('T'+str(self.tool_list[0]),500)
             print("selected tool "+ str(self.tool_list[0]))
-            self.Diabase.write_line('M400')
+            self.Diabase.write_line('M400',1000)
 
             #attempt to make the GUI more responsive
             QtWidgets.QApplication.processEvents()
@@ -387,15 +396,16 @@ class MainWindow(QtWidgets.QMainWindow):
             #stop the calibration if the stop button was clicked.
             if self.stop_button_clicked:
                 self.stop_button_clicked = False
+                self.calibration_running = False
                 return 0
             
             #move the printer to the starting position for the calibration.
             if cal_x:
-                self.Diabase.write_line('G1 Z'+str(z_pos+cooldown_height)+' Y'+str(y_pos)+' X'+str(x_start) + ' F' + str(default_speed*60))
+                self.Diabase.write_line('G1 Z'+str(z_pos+cooldown_height)+' Y'+str(y_pos)+' X'+str(x_start) + ' F' + str(default_speed*60),1000)
             else:
-                self.Diabase.write_line('G1 Z'+str(z_pos+cooldown_height)+' Y'+str(y_start)+' X'+str(x_pos) + ' F' + str(default_speed*60))
+                self.Diabase.write_line('G1 Z'+str(z_pos+cooldown_height)+' Y'+str(y_start)+' X'+str(x_pos) + ' F' + str(default_speed*60),1000)
             print("commanded to go to initial position")
-            self.Diabase.write_line('M400')
+            self.Diabase.write_line('M400',1000)
             
             
 
@@ -405,27 +415,31 @@ class MainWindow(QtWidgets.QMainWindow):
             #perform calibration for all tools
             for tool in range(len(self.tool_list)):
                 print("selected tool "+ str(self.tool_list[tool]))
-                self.Diabase.write_line('T'+str(self.tool_list[tool]))
-                self.Diabase.write_line('M400')
+                self.Diabase.write_line('T'+str(self.tool_list[tool]),1000)
+                self.Diabase.write_line('M400',1000)
                 
                 #go forwards and backwards.
                 for dir in range(2):
                     #move the printer to the starting position for the calibration.
                     if cal_x:
                         if dir == 0:
-                            self.Diabase.write_line('G1 Z'+str(z_pos)+' Y'+str(y_pos)+' X'+str(x_start) + ' F' + str(default_speed*60))
+                            self.Diabase.write_line('G1 Z'+str(z_pos)+' Y'+str(y_pos)+' X'+str(x_start) + ' F' + str(default_speed*60),5000)
                         else:
-                            self.Diabase.write_line('G1 Z'+str(z_pos)+' Y'+str(y_pos)+' X'+str(x_stop) + ' F' + str(default_speed*60))
+                            self.Diabase.write_line('G1 Z'+str(z_pos)+' Y'+str(y_pos)+' X'+str(x_stop) + ' F' + str(default_speed*60),5000)
                     else:
                         if dir == 0:
-                            self.Diabase.write_line('G1 Z'+str(z_pos)+' Y'+str(y_start)+' X'+str(x_pos) + ' F' + str(default_speed*60))
+                            self.Diabase.write_line('G1 Z'+str(z_pos)+' Y'+str(y_start)+' X'+str(x_pos) + ' F' + str(default_speed*60),5000)
                         else:
-                            self.Diabase.write_line('G1 Z'+str(z_pos)+' Y'+str(y_stop)+' X'+str(x_pos) + ' F' + str(default_speed*60))
-                    self.Diabase.write_line('M400')
+                            self.Diabase.write_line('G1 Z'+str(z_pos)+' Y'+str(y_stop)+' X'+str(x_pos) + ' F' + str(default_speed*60),5000)
+                    self.Diabase.write_line('M400',5000)
                     
                     #delete any old sample in the LDC1101EVM and make sure it is ready.
                     self.Ldc1101evm.flush()
                     self.Ldc1101evm.get_LHR_data(50)
+                    if self.Ldc1101evm.error:
+                        self.output_to_terminal('Error in communication with LDC1101EVM. Please restart')
+                        self.calibration_running = False
+                        return False
 
                     i1 = 0#total samples number
                     tic2 = time.time()#time since the calibration started
@@ -433,6 +447,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         #stop the calibration if the stop button was clicked.
                         if self.stop_button_clicked:
                             self.stop_button_clicked = False
+                            self.calibration_running = False
                             return 0
 
                         #calculate the position the printer should be at based on the desired speed and the elapsed time, and move the printer to there.
@@ -443,18 +458,18 @@ class MainWindow(QtWidgets.QMainWindow):
                                 new_x = x_start+toc2*speed
                             else:
                                 new_x = x_stop-toc2*speed
-                            self.Diabase.write_line('G1 X' + str(new_x) + " F" + str(speed*60*speed_factor))
+                            self.Diabase.write_line('G1 X' + str(new_x) + " F" + str(speed*60*speed_factor),100)
                         else:
                             if dir == 0:
                                 new_y = y_start+toc2*speed
                             else:
                                 new_y = y_stop-toc2*speed
-                            self.Diabase.write_line('G1 Y' + str(new_y) + " F" + str(speed*60*speed_factor))
-                        self.Diabase.write_line('M400')
+                            self.Diabase.write_line('G1 Y' + str(new_y) + " F" + str(speed*60*speed_factor),100)
+                        self.Diabase.write_line('M400',100)
 
                         #Flush the LDC1101EVM to be sure to get the latest value and get a sample
                         self.Ldc1101evm.flush()
-                        data[i1,tool,cycle,dir] = self.Ldc1101evm.get_LHR_data(50)
+                        data[i1,tool,cycle,dir] = self.Ldc1101evm.get_LHR_data(10)
 
                         #Also store a timestamp of the current time since the beginning of the entire calibration process
                         timestamps[i1,tool,cycle,dir] = time.time()-tic
@@ -515,8 +530,8 @@ class MainWindow(QtWidgets.QMainWindow):
                                 self.output_to_terminal('y offset tool ' + str(self.tool_list[tool]) + ' when going down: ' + f"{offset:.3f}")
                    
                     #move the nozzle up and let the coil cool down
-                    self.Diabase.write_line('G1 Z'+str(z_pos+cooldown_height)  + ' F' + str(default_speed*60))
-                    self.Diabase.write_line('M400')
+                    self.Diabase.write_line('G1 Z'+str(z_pos+cooldown_height)  + ' F' + str(default_speed*60),10)
+                    self.Diabase.write_line('M400',10)
                     time.sleep(cooldown_time)
         #when finished with the calibration process, calculate the offsets between the tools and print them in the terminal
         for tool in range(len(self.tool_list)):
@@ -552,8 +567,9 @@ class MainWindow(QtWidgets.QMainWindow):
         sio.savemat(filename,{'pos':pos, 'time':timestamps, 'data':data, 'loc':loc, 'tool_list':self.tool_list,'settings':self.settings_dict,'calibrated_x':cal_x})
 
         #home the printer        
-        self.Diabase.write_line('G28')
+        self.Diabase.write_line('G28',10000)
         self.output_to_terminal('finished calibration')
+        self.calibration_running = False
         return True    
 
     def apply_offsets(self):
@@ -562,6 +578,10 @@ class MainWindow(QtWidgets.QMainWindow):
         :return: None
         :rtype: None
         """
+        if self.calibration_running == True:
+            self.output_to_terminal('Wait for the calibration to finish before applying offsets')
+            return False
+
         for i1 in range(len(self.offset_tool_list)):
             if self.offset_direction:
                 extra_offset = {}
@@ -571,9 +591,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 extra_offset = {}
                 extra_offset['y'] = self.offset_list[i1]
                 self.Diabase.set_tool_offset_differential(self.offset_tool_list[i1],extra_offset)
-        self.Diabase.write_line("T10")
+        self.Diabase.write_line("T10",5000)
         self.Diabase.store_offset_parameters()
         print('applied offsets')
+        return True
     
     def func(self,x, o, a, b, c, d, e):
         """Polynomial function fitted to the measured inductance curve to determine the point of symmetry
@@ -629,7 +650,7 @@ class MainWindow(QtWidgets.QMainWindow):
         settings_dict['fan_on'] = self.fan_box.isChecked()
         settings_dict['homing_on'] = self.homing_box.isChecked()
         settings_dict['ascend'] = self.ascend_box.isChecked()
-        settings_dict['version'] = '1.0.1'
+        settings_dict['version'] = '1.0.3'
         if self.update_tool_list():
             settings_dict['tool_list'] = self.tool_list
 

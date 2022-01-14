@@ -3,15 +3,18 @@ bed_temperature: 0
 fan_on: true
 homing_on: false
 nozzle_temperature: 175
-range: 2.0
-ref_tool: 2
-speed: 0.5
+range: 4.0
+ref_tool: 10
+speed: 2.0
 tool_list:
-- 2
+- 10
 - 1
+- 2
+- 3
+- 4
 version: 1.0.1
-x_cor: -34.0
+x_cor: -33.8
 x_rounds: 1
 y_cor: -78.7
 y_rounds: 1
-z_cor: 9.5
+z_cor: 9.4
