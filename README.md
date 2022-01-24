@@ -27,7 +27,7 @@ On windows:
 1. Use the `cd` to go to the folder that contains the content of this git
 1. Make a virtual environment by running `python -m venv venv`
 1. Activate the virtual environment by running `venv\Scripts\activate`
-1. Install the dependencies by running `pip install pyqt5 pyqtgraph pyserial pyaml scipy pyinstaller`
+1. Install the dependencies by running `pip install pyqt5 pyqtgraph pyserial pyaml scipy pyinstaller sphinx sphinx-rtd-theme`
 1. Freeze the python app by running `make.bat` in the terminal
 1. To make the installer, run installer.iss using inno setup compiler
  
