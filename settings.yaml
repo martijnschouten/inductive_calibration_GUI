@@ -8,13 +8,10 @@ ref_tool: 10
 speed: 2.0
 tool_list:
 - 10
-- 1
-- 2
-- 3
-- 4
-version: 1.0.1
+- 6
+version: 1.0.3
 x_cor: -33.8
 x_rounds: 1
-y_cor: -78.7
+y_cor: -78.0
 y_rounds: 1
 z_cor: 9.4

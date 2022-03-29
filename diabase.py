@@ -37,7 +37,7 @@ class diabase:
             else:
                 old_result = new_result
                 if watchdog > attempts:
-                    print('watchdog in write_line triggered! sting to ok: '+string)
+                    print('watchdog in write_line triggered! String to ok: '+string)
                     break   
 
     def set_tool_offset(self, tool, pos):

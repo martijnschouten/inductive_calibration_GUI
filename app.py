@@ -336,9 +336,11 @@ class MainWindow(QtWidgets.QMainWindow):
             self.calibration_running = False
             return False
 
+
         #heat up the tools
-        for i1 in range(len(self.tool_list)):
-            self.Diabase.write_line('G10 P%.0f R%.0f  S%.0f' % (self.tool_list[i1],self.temp_box.value(),self.temp_box.value()),10000)
+        if self.temp_box.value() > 20:
+            for i1 in range(len(self.tool_list)):
+                self.Diabase.write_line('G10 P%.0f R%.0f  S%.0f' % (self.tool_list[i1],self.temp_box.value(),self.temp_box.value()),10000)
         
         #heat up the bed
         self.Diabase.write_line('M140 S%.0f' % (self.bed_temp_box.value()),100)
@@ -374,7 +376,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.Diabase.write_line('G30',1000)
 
             #wait for homing to finish
-            self.Diabase.write_line('M400',1000)
+            self.Diabase.write_line('M400;after homing',1000)
 
             #attempt to make the GUI more responsive
             QtWidgets.QApplication.processEvents()
@@ -388,7 +390,7 @@ class MainWindow(QtWidgets.QMainWindow):
             #select the first tool
             self.Diabase.write_line('T'+str(self.tool_list[0]),500)
             print("selected tool "+ str(self.tool_list[0]))
-            self.Diabase.write_line('M400',1000)
+            self.Diabase.write_line('M400;after initial tool select',3000)
 
             #attempt to make the GUI more responsive
             QtWidgets.QApplication.processEvents()
@@ -405,7 +407,7 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 self.Diabase.write_line('G1 Z'+str(z_pos+cooldown_height)+' Y'+str(y_start)+' X'+str(x_pos) + ' F' + str(default_speed*60),1000)
             print("commanded to go to initial position")
-            self.Diabase.write_line('M400',1000)
+            self.Diabase.write_line('M400;After move',1000)
             
             
 
@@ -416,7 +418,7 @@ class MainWindow(QtWidgets.QMainWindow):
             for tool in range(len(self.tool_list)):
                 print("selected tool "+ str(self.tool_list[tool]))
                 self.Diabase.write_line('T'+str(self.tool_list[tool]),1000)
-                self.Diabase.write_line('M400',1000)
+                self.Diabase.write_line('M400; after tool select',3000)
                 
                 #go forwards and backwards.
                 for dir in range(2):
