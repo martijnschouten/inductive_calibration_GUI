@@ -11,14 +11,15 @@ The evaluation module should be placed on the bed and the printer and the module
 4. Go to the offsets tap and press measure Z
 5. Place the LDC1101EVM on the bed
 6. Connect the printer and the LDC1101EVM to the computer on which you ran the installer
-7. Manually move the printer such that the first tool is just above the coil.
-8. Run the program and copy the current location of the printer in x-coordinate coil, y-coordinate coil z-height test. Note that this does not need to be very precise
-9. Check that scanning range (default 2mm), speed (default 0.5mm/s), nozzle temperature (default 175) and bed temepature (default 0) are set to appropriate values
-10. Select the tools that need to be calibrated and select the tool relative to which the offset will be shown
-11. Press Calibrate X. The printer will now start moving the nozzles over the coil
-12. Check that the found offsets make sense. And click on apply offsets.
-13. Press Calibrate Y. The printer will now start moving the nozzles over the coil
-14. Check that the found offsets make sense. And click on apply offsets.
+7. Close make sure that Cura is closed since it claim the COM ports of the sensor and the printer for itself
+8. Manually move the printer such that the first tool is just above the coil.
+9. Run the program and copy the current location of the printer in x-coordinate coil, y-coordinate coil z-height test. Note that this does not need to be very precise
+10. Check that scanning range (default 2mm), speed (default 0.5mm/s), nozzle temperature (default 175) and bed temepature (default 0) are set to appropriate values
+11. Select the tools that need to be calibrated and select the tool relative to which the offset will be shown
+12. Press Calibrate X. The printer will now start moving the nozzles over the coil
+13. Check that the found offsets make sense. And click on apply offsets.
+14. Press Calibrate Y. The printer will now start moving the nozzles over the coil
+15. Check that the found offsets make sense. And click on apply offsets.
 
 # Compilation instructions
 On windows:
